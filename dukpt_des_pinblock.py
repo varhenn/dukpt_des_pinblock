@@ -7,7 +7,7 @@ Cipher: TripleDes (ECB mode) / Des (ECB mode)
 PinBlock format: ISO-0 (ISO 9564-1 Format 0)
 """
 import logging
-from argparse import ArgumentParser, RawTextHelpFormatter, BooleanOptionalAction
+from argparse import ArgumentParser, RawTextHelpFormatter
 from typing import Tuple
 from sys import argv
 
@@ -199,9 +199,8 @@ class CommandLine:
         parser.add_argument('--pinblock', type=pinblock_type,
                             metavar='PINBLOCK',
                             help="Pin block")
-        parser.add_argument('--next-ksn', type=bool,
-                            action=BooleanOptionalAction,
-                            metavar='next_ksn', default=True, required=False,
+        parser.add_argument('--no-next-ksn', action='store_false',
+                            dest='next_ksn',
                             help="Only used during encrypt action")
         self._parser = parser
 
